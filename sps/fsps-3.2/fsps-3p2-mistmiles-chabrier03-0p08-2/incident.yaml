@@ -6,5 +6,6 @@
 #     --grid-dir <grid-dir>
 
 grid_name: fsps-3.2-mistmiles_chabrier03-0.08,2
+libraries: [mist, miles]
 imf_type: chabrier03
 imf_masses: [0.08, 2]

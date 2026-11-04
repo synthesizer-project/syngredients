@@ -34,6 +34,13 @@ AGN = "src/syncretize/incident/blackholes"
 FSPS_CONFIGS = OUT.parent / "syncretize" / SPS / "fsps" / "configs"
 MSUN_KG = 1.98841586e30
 
+# FSPS [isochrones, spectra] libraries, from the published variant name
+# (stored as e.g. "mist-miles" or "mistmiles")
+FSPS_LIBRARIES = {
+    "mistmiles": ["mist", "miles"],
+    "mistc3k_lr": ["mist", "c3k_lr"],
+}
+
 # Cloudy axes, and the parameter file key that makes each one
 CLOUDY_AXES = {
     "ionisation_parameters": "ionisation_parameter",
@@ -130,7 +137,11 @@ def sps_incident(grid, axes):
     if name == "fsps" and "variable_imf_parameter" in mp:
         return fsps_variable_imf(mp, axes)
     if name == "fsps":
-        params = {"imf_type": mp["imf_type"], "imf_masses": mp["imf_masses"]}
+        params = {
+            "libraries": FSPS_LIBRARIES[mp["sps_variant"].replace("-", "")],
+            "imf_type": mp["imf_type"],
+            "imf_masses": mp["imf_masses"],
+        }
         if mp["imf_type"] == "bpl":
             params["imf_slopes"] = mp["imf_slopes"]
         return "fsps-3.2", f"{SPS}/fsps/generate_incident_grid.py", params
@@ -182,6 +193,9 @@ def fsps_variable_imf(mp, axes):
     }[mp["variable_imf_parameter"]]
     config = yaml.safe_load((FSPS_CONFIGS / config_name).read_text())
     config["model"]["sps_version"] = mp["sps_version"]
+    config["model"]["libraries"] = FSPS_LIBRARIES[
+        mp["sps_variant"].replace("-", "")
+    ]
     for entry in config["imf"]["slopes"] + config["imf"]["mass_boundaries"]:
         if entry.get("vary_axis"):
             entry["axis"].pop("range", None)
