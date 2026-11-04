@@ -9,11 +9,11 @@ Cloudy pipeline names its output as the published grid was named.
 manifest.yaml lists every Syndex grid with the files and script that make it.
 
 Usage:
-    python build_configs.py [--cache <dir>] [--grids-repo <dir>]
+    python build_configs.py [--cache <dir>] [--syncretize <dir>]
 
 --cache keeps the downloaded metadata in <dir> so reruns skip the API.
---grids-repo is the synthesizer-grids checkout, read for the FSPS
-variable-IMF templates (default: ../synthesizer-grids).
+--syncretize is the syncretize checkout, read for the FSPS
+variable-IMF templates (default: ../syncretize).
 """
 
 import argparse
@@ -31,7 +31,7 @@ API = "https://data.synthesizer-project.org/v1"
 OUT = Path(__file__).resolve().parent
 SPS = "src/syncretize/incident/sps"
 AGN = "src/syncretize/incident/blackholes"
-FSPS_CONFIGS = OUT.parent / "synthesizer-grids" / SPS / "fsps" / "configs"
+FSPS_CONFIGS = OUT.parent / "syncretize" / SPS / "fsps" / "configs"
 MSUN_KG = 1.98841586e30
 
 # Cloudy axes, and the parameter file key that makes each one
@@ -270,13 +270,11 @@ def dump(path, header, params):
 def main():
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[1])
     parser.add_argument("--cache", type=Path, help="metadata cache directory")
-    parser.add_argument(
-        "--grids-repo", type=Path, help="synthesizer-grids checkout"
-    )
+    parser.add_argument("--syncretize", type=Path, help="syncretize checkout")
     args = parser.parse_args()
-    if args.grids_repo:
+    if args.syncretize:
         global FSPS_CONFIGS
-        FSPS_CONFIGS = args.grids_repo / SPS / "fsps" / "configs"
+        FSPS_CONFIGS = args.syncretize / SPS / "fsps" / "configs"
     if args.cache:
         args.cache.mkdir(parents=True, exist_ok=True)
 

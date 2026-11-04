@@ -2,22 +2,22 @@
 
 Parameter files that regenerate every grid in the
 [Syndex catalogue](https://synthesizer-project.org/syndex) with the scripts in
-[synthesizer-grids](https://github.com/synthesizer-project/synthesizer-grids).
+[syncretize](https://github.com/synthesizer-project/syncretize).
 They are generated from the catalogue's metadata; do not edit them by hand. To
 regenerate them after the catalogue changes, run:
 
 ```
-python build_configs.py [--cache <dir>] [--grids-repo <dir>]
+python build_configs.py [--cache <dir>] [--syncretize <dir>]
 ```
 
-`--grids-repo` is a synthesizer-grids checkout (default `../synthesizer-grids`),
+`--syncretize` is a syncretize checkout (default `../syncretize`),
 read for the FSPS variable-IMF templates.
 
 ## Running a grid
 
 Script paths in the headers and the manifest are relative to the
-synthesizer-grids checkout; `<syngredients>` is this repository. For example,
-from synthesizer-grids:
+syncretize checkout; `<syngredients>` is this repository. For example,
+from syncretize:
 
 ```
 python src/syncretize/incident/sps/bc03/generate_incident_grid.py \
@@ -65,7 +65,7 @@ manifest and as `NOTE` lines in the YAML headers:
 Some things Syndex doesn't record, so these files assume them:
 
 - Isotropic QSOSED grids use `cosine_inclinations: 0.5`, the value in the
-  synthesizer-grids' own isotropic parameter files.
+  isotropic parameter files in syncretize.
 - Fixed-efficiency RELAGN grids use `radiative_efficiencies: [0.1]`, as in
   their names.
 - FSPS uses whatever libraries it was compiled with: MIST and MILES for the
