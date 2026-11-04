@@ -1,0 +1,10 @@
+# Syndex: bpass-2p3-bin-bpl-0p1-1p0-300p0-1p3-2p35-alpha0p6
+# File: bpass-2.3-bin_bpl-0.1,1.0,300.0-1.3,2.35_alpha0.6.hdf5
+#
+# python src/syncretize/incident/sps/bpass/generate_incident_grid_2_3.py \
+#     <syngredients>/sps/bpass-2.3/bpass-2p3-bin-bpl-0p1-1p0-300p0-1p3-2p35-alpha0p6/incident.yaml \
+#     --grid-dir <grid-dir> --input-dir <input-dir>
+
+model: bpass_v2.3_imf135_300
+variant: bin
+alpha_enhancement: 0.6

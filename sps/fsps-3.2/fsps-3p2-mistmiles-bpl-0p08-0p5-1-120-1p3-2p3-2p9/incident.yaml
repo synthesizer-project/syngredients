@@ -1,0 +1,10 @@
+# Syndex: fsps-3p2-mistmiles-bpl-0p08-0p5-1-120-1p3-2p3-2p9
+# File: fsps-3.2-mistmiles_bpl-0.08,0.5,1,120-1.3,2.3,2.9.hdf5
+#
+# python src/syncretize/incident/sps/fsps/generate_incident_grid.py \
+#     <syngredients>/sps/fsps-3.2/fsps-3p2-mistmiles-bpl-0p08-0p5-1-120-1p3-2p3-2p9/incident.yaml \
+#     --grid-dir <grid-dir>
+
+imf_type: bpl
+imf_masses: [0.08, 0.5, 1, 120]
+imf_slopes: [1.3, 2.3, 2.9]

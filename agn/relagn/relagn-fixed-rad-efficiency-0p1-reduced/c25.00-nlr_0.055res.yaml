@@ -1,0 +1,29 @@
+# Syndex: relagn-fixed-rad-efficiency-0p1-reduced-cloudy-c25p00-nlr-0p055res
+# File: relagn_fixed_rad_efficiency_0.1_reduced_cloudy-c25.00-nlr_0.055res.hdf5
+# Incident: agn/relagn/relagn-fixed-rad-efficiency-0p1-reduced/incident.yaml
+
+CMB: null
+T_floor: 100
+abundance_scalings:
+  carbon: GalacticConcordance
+  nitrogen: GalacticConcordance
+alpha_enhancement: 0
+cloudy_version: c25.00
+cosmic_rays: true
+depletion_model: Jenkins2009_Gunasekera2021
+depletion_scale: 0.5
+geometry: planeparallel
+grains: Orion
+ionisation_parameter_model: fixed
+iterate_to_convergence: true
+output_cont: true
+output_linelist: linelist-standard.dat
+reference_abundance: GalacticConcordance
+resolution: 0.055
+stop_T: 500
+stop_efrac: -2
+turbulence: 100
+z: 0
+hydrogen_density: [100, 1000, 10000, 100000]
+ionisation_parameter: [0.001, 0.01, 0.1]
+metallicities: [0.0001, 0.0003, 0.001, 0.003, 0.01, 0.03, 0.05]

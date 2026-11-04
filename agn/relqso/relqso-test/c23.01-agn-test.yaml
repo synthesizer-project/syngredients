@@ -1,0 +1,29 @@
+# Syndex: relqso-test-agn-cloudy-c23p01
+# File: relqso-test_cloudy-c23.01-agn-test.hdf5
+# Incident: agn/relqso/relqso-test/incident.yaml
+
+CMB: null
+T_floor: 100
+abundance_scalings:
+  carbon: GalacticConcordance
+  nitrogen: GalacticConcordance
+alpha_enhancement: 0
+cloudy_version: c23.01
+cosmic_rays: true
+depletion_model: null
+depletion_scale: 1
+geometry: planeparallel
+grains: null
+ionisation_parameter_model: fixed
+iterate_to_convergence: true
+output_cont: true
+output_linelist: linelist-standard.dat
+reference_abundance: GalacticConcordance
+resolution: 1
+stop_T: 500
+stop_efrac: -2
+turbulence: 100
+z: 0
+metallicities: [0.001, 0.01]
+ionisation_parameter: [0.01, 0.1]
+hydrogen_density: [10000, 10000000000]

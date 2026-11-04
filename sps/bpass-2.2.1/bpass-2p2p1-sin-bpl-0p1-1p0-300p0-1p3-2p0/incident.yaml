@@ -1,0 +1,9 @@
+# Syndex: bpass-2p2p1-sin-bpl-0p1-1p0-300p0-1p3-2p0
+# File: bpass-2.2.1-sin_bpl-0.1,1.0,300.0-1.3,2.0.hdf5
+#
+# python src/syncretize/incident/sps/bpass/generate_incident_grid_2_2_1.py \
+#     <syngredients>/sps/bpass-2.2.1/bpass-2p2p1-sin-bpl-0p1-1p0-300p0-1p3-2p0/incident.yaml \
+#     --grid-dir <grid-dir> --input-dir <input-dir>
+
+model: bpass_v2.2.1_imf100_300
+variant: sin

@@ -1,0 +1,9 @@
+# Syndex: fsps-3p2-mistmiles-chabrier03-2-120
+# File: fsps-3.2-mistmiles_chabrier03-2,120.hdf5
+#
+# python src/syncretize/incident/sps/fsps/generate_incident_grid.py \
+#     <syngredients>/sps/fsps-3.2/fsps-3p2-mistmiles-chabrier03-2-120/incident.yaml \
+#     --grid-dir <grid-dir>
+
+imf_type: chabrier03
+imf_masses: [2, 120]

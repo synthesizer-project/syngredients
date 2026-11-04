@@ -1,0 +1,40 @@
+# Syndex: unpublished (Cloudy input only)
+# File: fsps-4.0-mistc3k_lr_bpl-0.08,0.5,1.0,120.0-1.3,2.3,2.3_axis-imf_high_mass_slope.hdf5
+#
+# python src/syncretize/incident/sps/fsps/generate_incident_grid_variable_imf.py \
+#     <syngredients>/sps/fsps-4.0/fsps-4p0-mistc3k-lr-bpl-0p08-0p5-1p0-120p0-1p3-2p3-2p3-axis-imf-high-mass-slope/incident.yaml \
+#     --grid-dir <grid-dir>
+# NOTE: Incident grid not in Syndex; rebuilt from the axes of fsps-4p0-mistc3k-lr-varimf-high-mass-slope-cloudy-c23p01.
+
+model:
+  sps_version: '4.0'
+  imf_type: bpl
+imf:
+  mass_boundaries:
+  - name: lower_mass
+    fixed_value: 0.08
+    vary_axis: false
+  - name: low_mass_break
+    fixed_value: 0.5
+    vary_axis: false
+  - name: high_mass_break
+    fixed_value: 1.0
+    vary_axis: false
+  - name: upper_mass
+    fixed_value: 120.0
+    vary_axis: false
+  slopes:
+  - name: low_mass_slope
+    fixed_value: 1.3
+    vary_axis: false
+  - name: intermediate_mass_slope
+    fixed_value: 2.3
+    vary_axis: false
+  - name: high_mass_slope
+    fixed_value: 2.3
+    vary_axis: true
+    axis:
+      name: imf_high_mass_slope
+      log_on_read: false
+      values: [1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6,
+        2.7, 2.8, 2.9, 3]

@@ -1,0 +1,12 @@
+# Syndex: relagn-variable-rad-efficiency-reduced
+# File: relagn_incident_variable_rad_efficiency_reduced.hdf5
+#
+# python src/syncretize/incident/blackholes/relagn/generate_incident_grid.py \
+#     <syngredients>/agn/relagn/relagn-variable-rad-efficiency-reduced/incident.yaml \
+#     --grid-dir <grid-dir>
+
+model: relagn_incident_variable_rad_efficiency_reduced
+log10masses: [5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0]
+log10accretion_rates_eddington: [-4.0, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0]
+cosine_inclinations: [0.2, 0.4, 0.6, 0.8, 1]
+spins: [0, 0.25, 0.5, 0.75, 0.998]

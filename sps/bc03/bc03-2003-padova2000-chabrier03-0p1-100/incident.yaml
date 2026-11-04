@@ -1,0 +1,9 @@
+# Syndex: bc03-2003-padova2000-chabrier03-0p1-100
+# File: bc03-2003-padova00_chabrier03-0.1,100.hdf5
+#
+# python src/syncretize/incident/sps/bc03/generate_incident_grid.py \
+#     <syngredients>/sps/bc03/bc03-2003-padova2000-chabrier03-0p1-100/incident.yaml \
+#     --grid-dir <grid-dir> --input-dir <input-dir>
+
+isochrones: Padova2000
+imf_type: chabrier03

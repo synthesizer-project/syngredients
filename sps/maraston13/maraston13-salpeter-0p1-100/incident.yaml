@@ -1,0 +1,8 @@
+# Syndex: maraston13-salpeter-0p1-100
+# File: maraston13_salpeter-0.1,100.hdf5
+#
+# python src/syncretize/incident/sps/maraston/generate_incident_grid_2013.py \
+#     <syngredients>/sps/maraston13/maraston13-salpeter-0p1-100/incident.yaml \
+#     --grid-dir <grid-dir> --input-dir <input-dir>
+
+imf_type: salpeter

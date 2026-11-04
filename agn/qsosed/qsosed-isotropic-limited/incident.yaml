@@ -1,0 +1,11 @@
+# Syndex: qsosed-isotropic-limited
+# File: qsosed-isotropic-limited.hdf5
+#
+# python src/syncretize/incident/blackholes/qsosed/generate_incident_grid.py \
+#     <syngredients>/agn/qsosed/qsosed-isotropic-limited/incident.yaml \
+#     --grid-dir <grid-dir>
+
+model: qsosed-isotropic-limited
+log10masses: [6.0, 7.0, 8.0, 9.0, 10.0]
+log10accretion_rates_eddington: [-1.5, -1.0, 0.0, 0.5]
+cosine_inclinations: 0.5

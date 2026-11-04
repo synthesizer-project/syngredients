@@ -1,0 +1,29 @@
+# Syndex: qsosed-isotropic-limited-blr-cloudy-c23p01
+# File: qsosed-isotropic-limited_cloudy-c23.01-blr-limited.hdf5
+# Incident: agn/qsosed/qsosed-isotropic-limited/incident.yaml
+# NOTE: Published with ionising luminosities only (no spectra or lines).
+
+CMB: null
+T_floor: 100
+abundance_scalings:
+  carbon: GalacticConcordance
+  nitrogen: GalacticConcordance
+alpha_enhancement: 0
+cloudy_version: c23.01
+cosmic_rays: true
+depletion_model: null
+depletion_scale: 1
+geometry: planeparallel
+grains: null
+ionisation_parameter_model: fixed
+iterate_to_convergence: true
+output_cont: true
+output_linelist: linelist-standard.dat
+reference_abundance: GalacticConcordance
+resolution: 1
+z: 0
+metallicities: [0.0001, 0.001, 0.01]
+ionisation_parameter: [0.001, 0.01, 0.1]
+hydrogen_density: [100000000, 1000000000, 10000000000, 100000000000, 1000000000000]
+stop_column_density: [21, 22, 23, 24, 25, 26]
+turbulence: [10, 20, 50, 100, 200, 500]

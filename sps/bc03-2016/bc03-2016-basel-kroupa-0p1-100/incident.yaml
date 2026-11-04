@@ -1,0 +1,9 @@
+# Syndex: bc03-2016-basel-kroupa-0p1-100
+# File: bc03-2016-BaSeL_kroupa-0.1,100.hdf5
+#
+# python src/syncretize/incident/sps/bc03/generate_incident_grid_2016.py \
+#     <syngredients>/sps/bc03-2016/bc03-2016-basel-kroupa-0p1-100/incident.yaml \
+#     --grid-dir <grid-dir> --input-dir <input-dir>
+
+variant: BaSeL
+imf_type: kroupa

@@ -1,0 +1,9 @@
+# Syndex: yggdrasil-1p3p3-popiii1-fcov1
+# File: yggdrasil-1.3.3-POPIII-fcov_1_salpeter-50,500.hdf5
+#
+# python src/syncretize/incident/sps/yggdrasil/generate_incident_grid.py \
+#     <syngredients>/sps/yggdrasil/yggdrasil-1p3p3-popiii1-fcov1/incident.yaml \
+#     --grid-dir <grid-dir> --input-dir <input-dir>
+
+population: PopIII.1
+covering_fraction: 1
