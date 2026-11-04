@@ -1,6 +1,12 @@
 # Syndex: fsps-3p2-mistmiles-chabrier03-0p5-120-cloudy-c23p01
 # File: fsps-3.2-mistmiles_chabrier03-0.5,120_cloudy-c23.01-sps.hdf5
 # Incident: sps/fsps-3.2/fsps-3p2-mistmiles-chabrier03-0p5-120/incident.yaml
+#
+# python src/syncretize/cloudy/create_cloudy_input_grid.py \
+#     --incident-grid fsps-3.2-mistmiles_chabrier03-0.5,120 \
+#     --grid-dir <grid-dir> --cloudy-output-dir <cloudy-dir> \
+#     --cloudy-paramfile <syngredients>/sps/fsps-3.2/fsps-3p2-mistmiles-chabrier03-0p5-120/c23.01-sps.yaml
+# then, once Cloudy has run, create_synthesizer_grid.py with the same arguments.
 
 CMB: null
 T_floor: 100

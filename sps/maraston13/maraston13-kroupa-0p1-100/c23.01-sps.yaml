@@ -1,6 +1,12 @@
 # Syndex: maraston13-kroupa-0p1-100-cloudy-c23p01
 # File: maraston13_kroupa-0.1,100_cloudy-c23.01-sps.hdf5
 # Incident: sps/maraston13/maraston13-kroupa-0p1-100/incident.yaml
+#
+# python src/syncretize/cloudy/create_cloudy_input_grid.py \
+#     --incident-grid maraston13_kroupa-0.1,100 \
+#     --grid-dir <grid-dir> --cloudy-output-dir <cloudy-dir> \
+#     --cloudy-paramfile <syngredients>/sps/maraston13/maraston13-kroupa-0p1-100/c23.01-sps.yaml
+# then, once Cloudy has run, create_synthesizer_grid.py with the same arguments.
 
 CMB: null
 T_floor: 100

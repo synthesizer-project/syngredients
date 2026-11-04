@@ -1,6 +1,12 @@
 # Syndex: bpass-2p2p1-bin-chabrier03-0p1-300p0-cloudy-c23p01
 # File: bpass-2.2.1-bin_chabrier03-0.1,300.0_cloudy-c23.01-sps_updated-star-fraction.hdf5
 # Incident: sps/bpass-2.2.1/bpass-2p2p1-bin-chabrier03-0p1-300p0/incident.yaml
+#
+# python src/syncretize/cloudy/create_cloudy_input_grid.py \
+#     --incident-grid bpass-2.2.1-bin_chabrier03-0.1,300.0 \
+#     --grid-dir <grid-dir> --cloudy-output-dir <cloudy-dir> \
+#     --cloudy-paramfile <syngredients>/sps/bpass-2.2.1/bpass-2p2p1-bin-chabrier03-0p1-300p0/c23.01-sps_updated-star-fraction.yaml
+# then, once Cloudy has run, create_synthesizer_grid.py with the same arguments.
 
 CMB: null
 T_floor: 100

@@ -1,6 +1,12 @@
 # Syndex: relagn-fixed-rad-efficiency-0p1-reduced-cloudy-c25p00-nlr-0p055res
 # File: relagn_fixed_rad_efficiency_0.1_reduced_cloudy-c25.00-nlr_0.055res.hdf5
 # Incident: agn/relagn/relagn-fixed-rad-efficiency-0p1-reduced/incident.yaml
+#
+# python src/syncretize/cloudy/create_cloudy_input_grid.py \
+#     --incident-grid relagn_fixed_rad_efficiency_0.1_reduced \
+#     --grid-dir <grid-dir> --cloudy-output-dir <cloudy-dir> \
+#     --cloudy-paramfile <syngredients>/agn/relagn/relagn-fixed-rad-efficiency-0p1-reduced/c25.00-nlr_0.055res.yaml
+# then, once Cloudy has run, create_synthesizer_grid.py with the same arguments.
 
 CMB: null
 T_floor: 100

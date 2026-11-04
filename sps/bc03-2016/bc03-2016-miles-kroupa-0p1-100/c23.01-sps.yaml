@@ -1,6 +1,12 @@
 # Syndex: bc03-2016-miles-kroupa-0p1-100-cloudy-c23p01
 # File: bc03-2016-Miles_kroupa-0.1,100_cloudy-c23.01-sps.hdf5
 # Incident: sps/bc03-2016/bc03-2016-miles-kroupa-0p1-100/incident.yaml
+#
+# python src/syncretize/cloudy/create_cloudy_input_grid.py \
+#     --incident-grid bc03-2016-Miles_kroupa-0.1,100 \
+#     --grid-dir <grid-dir> --cloudy-output-dir <cloudy-dir> \
+#     --cloudy-paramfile <syngredients>/sps/bc03-2016/bc03-2016-miles-kroupa-0p1-100/c23.01-sps.yaml
+# then, once Cloudy has run, create_synthesizer_grid.py with the same arguments.
 # NOTE: Its ages axis differs from bc03-2016-miles-kroupa-0p1-100's at 1 of 221 points, so it was made from another version of that incident grid.
 
 CMB: null

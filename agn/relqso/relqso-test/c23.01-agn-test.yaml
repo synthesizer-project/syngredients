@@ -1,6 +1,12 @@
 # Syndex: relqso-test-agn-cloudy-c23p01
 # File: relqso-test_cloudy-c23.01-agn-test.hdf5
 # Incident: agn/relqso/relqso-test/incident.yaml
+#
+# python src/syncretize/cloudy/create_cloudy_input_grid.py \
+#     --incident-grid relqso-test \
+#     --grid-dir <grid-dir> --cloudy-output-dir <cloudy-dir> \
+#     --cloudy-paramfile <syngredients>/agn/relqso/relqso-test/c23.01-agn-test.yaml
+# then, once Cloudy has run, create_synthesizer_grid.py with the same arguments.
 
 CMB: null
 T_floor: 100

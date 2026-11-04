@@ -413,6 +413,13 @@ def main():
             f"Syndex: {d['name']}",
             f"File: {filename}",
             f"Incident: {directory}/incident.yaml",
+            "",
+            "python src/syncretize/cloudy/create_cloudy_input_grid.py \\",
+            f"    --incident-grid {filename.split('_cloudy-')[0]} \\",
+            "    --grid-dir <grid-dir> --cloudy-output-dir <cloudy-dir> \\",
+            f"    --cloudy-paramfile <syngredients>/{config}",
+            "then, once Cloudy has run, create_synthesizer_grid.py with the "
+            "same arguments.",
             *[f"NOTE: {n}" for n in notes],
         ]
         dump(OUT / config, header, cloudy_params(grid, cloudy_axes))

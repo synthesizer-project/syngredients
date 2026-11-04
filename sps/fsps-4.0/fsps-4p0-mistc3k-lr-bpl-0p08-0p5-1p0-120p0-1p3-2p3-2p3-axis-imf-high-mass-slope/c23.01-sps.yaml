@@ -1,6 +1,12 @@
 # Syndex: fsps-4p0-mistc3k-lr-varimf-high-mass-slope-cloudy-c23p01
 # File: fsps-4.0-mistc3k_lr_bpl-0.08,0.5,1.0,120.0-1.3,2.3,2.3_axis-imf_high_mass_slope_cloudy-c23.01-sps.hdf5
 # Incident: sps/fsps-4.0/fsps-4p0-mistc3k-lr-bpl-0p08-0p5-1p0-120p0-1p3-2p3-2p3-axis-imf-high-mass-slope/incident.yaml
+#
+# python src/syncretize/cloudy/create_cloudy_input_grid.py \
+#     --incident-grid fsps-4.0-mistc3k_lr_bpl-0.08,0.5,1.0,120.0-1.3,2.3,2.3_axis-imf_high_mass_slope \
+#     --grid-dir <grid-dir> --cloudy-output-dir <cloudy-dir> \
+#     --cloudy-paramfile <syngredients>/sps/fsps-4.0/fsps-4p0-mistc3k-lr-bpl-0p08-0p5-1p0-120p0-1p3-2p3-2p3-axis-imf-high-mass-slope/c23.01-sps.yaml
+# then, once Cloudy has run, create_synthesizer_grid.py with the same arguments.
 
 CMB: null
 T_floor: 100
