@@ -6,6 +6,7 @@
 #     --grid-dir <grid-dir>
 # NOTE: Incident grid not in Syndex; rebuilt from the axes of qsosed-test-agn-cloudy-c23p01.
 
+grid_name: qsosed-test
 model: qsosed-test
 log10masses: [8.0, 9.0]
 log10accretion_rates_eddington: [-1.0, 0.0]

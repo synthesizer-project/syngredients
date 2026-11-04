@@ -5,6 +5,7 @@
 #     <syngredients>/agn/relqso/relqso-test/incident.yaml \
 #     --grid-dir <grid-dir>
 
+grid_name: relqso-test
 model: relqso-test
 log10masses: [8.0, 9.0]
 log10accretion_rates_eddington: [-1.0, 0.0]

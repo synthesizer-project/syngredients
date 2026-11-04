@@ -5,6 +5,7 @@
 #     <syngredients>/agn/relagn/relagn-fixed-rad-efficiency-0p1-reduced/incident.yaml \
 #     --grid-dir <grid-dir>
 
+grid_name: relagn_incident_fixed_rad_efficiency_0p1_reduced
 model: relagn_incident_fixed_rad_efficiency_0p1_reduced
 log10masses: [6.0, 7.0, 8.0, 9.0]
 log10accretion_rates_eddington: [-4.0, -3.0, -2.0, -1.0, 0.0, 1.0]

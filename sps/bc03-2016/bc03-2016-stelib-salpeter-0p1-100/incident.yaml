@@ -5,5 +5,6 @@
 #     <syngredients>/sps/bc03-2016/bc03-2016-stelib-salpeter-0p1-100/incident.yaml \
 #     --grid-dir <grid-dir> --input-dir <input-dir>
 
+grid_name: bc03-2016-Stelib_salpeter-0.1,100
 variant: Stelib
 imf_type: salpeter

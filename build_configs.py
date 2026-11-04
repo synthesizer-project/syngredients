@@ -309,6 +309,7 @@ def main():
             family = f"agn/{family}"
         no_input_dir = family.startswith("agn") or "/fsps/" in script
         directory = f"{family}/{syndex_name or slug(stem)}"
+        grid_name = stem
         if directory in incidents and incidents[directory]["params"] != params:
             # Same name, different axes: rename so outputs do not collide
             directory = f"{family}/{user}-incident"
@@ -316,7 +317,7 @@ def main():
                 f"Published under the name {params['model']}, like "
                 f"{slug(stem)} which has different axes, so renamed to {user}."
             ]
-            params["model"] = user
+            params["model"] = grid_name = user
         if directory not in incidents:
             header = [
                 f"Syndex: {syndex_name or 'unpublished (Cloudy input only)'}",
@@ -328,7 +329,12 @@ def main():
                 + ("" if no_input_dir else " --input-dir <input-dir>"),
                 *[f"NOTE: {n}" for n in notes],
             ]
-            dump(OUT / directory / "incident.yaml", header, params)
+            # grid_name makes the script write the published filename
+            dump(
+                OUT / directory / "incident.yaml",
+                header,
+                {"grid_name": grid_name, **params},
+            )
             incidents[directory] = {
                 "syndex_name": syndex_name,
                 "syndex_filename": filename,

@@ -5,6 +5,7 @@
 #     <syngredients>/sps/maraston24/maraston24-tenc0p40-kroupa-0p1-100/incident.yaml \
 #     --grid-dir <grid-dir> --input-dir <input-dir>
 
+grid_name: maraston24-Tenc40_kroupa-0.1,100
 imf_type: kroupa
 rotation: 0.4
 model_type: Tenc

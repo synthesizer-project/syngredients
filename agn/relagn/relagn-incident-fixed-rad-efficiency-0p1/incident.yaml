@@ -6,6 +6,7 @@
 #     --grid-dir <grid-dir>
 # NOTE: Incident grid not in Syndex; rebuilt from the axes of relagn-incident-fixed-rad-efficiency-0p1-cloudy-c23p01-nlr.
 
+grid_name: relagn_incident_fixed_rad_efficiency_0p1
 model: relagn_incident_fixed_rad_efficiency_0p1
 log10masses: [6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0, 9.5, 10.0]
 log10accretion_rates_eddington: [-4.5, -4.0, -3.5, -3.0, -2.5, -2.0, -1.5, -1.0,

@@ -5,6 +5,7 @@
 #     <syngredients>/sps/maraston24/maraston24-te0p40-salpeter-0p1-100/incident.yaml \
 #     --grid-dir <grid-dir> --input-dir <input-dir>
 
+grid_name: maraston24-Te40_salpeter-0.1,100
 imf_type: salpeter
 rotation: 0.4
 model_type: Te

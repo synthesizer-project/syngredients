@@ -5,5 +5,6 @@
 #     <syngredients>/sps/yggdrasil/yggdrasil-1p3p3-popiii1-fcov0p5/incident.yaml \
 #     --grid-dir <grid-dir> --input-dir <input-dir>
 
+grid_name: yggdrasil-1.3.3-POPIII-fcov_0.5_salpeter-50,500
 population: PopIII.1
 covering_fraction: 0.5

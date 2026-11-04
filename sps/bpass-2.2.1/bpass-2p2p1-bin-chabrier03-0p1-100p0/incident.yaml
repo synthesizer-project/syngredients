@@ -5,5 +5,6 @@
 #     <syngredients>/sps/bpass-2.2.1/bpass-2p2p1-bin-chabrier03-0p1-100p0/incident.yaml \
 #     --grid-dir <grid-dir> --input-dir <input-dir>
 
+grid_name: bpass-2.2.1-bin_chabrier03-0.1,100.0
 model: bpass_v2.2.1_imf_chab100
 variant: bin

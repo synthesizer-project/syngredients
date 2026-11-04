@@ -7,6 +7,7 @@
 # NOTE: Incident grid not in Syndex; rebuilt from the axes of qsosed-cloudy-agn-test.
 # NOTE: Published under the name qsosed-test, like qsosed-test which has different axes, so renamed to qsosed-cloudy-agn-test.
 
+grid_name: qsosed-cloudy-agn-test
 model: qsosed-cloudy-agn-test
 log10masses: [8.0, 9.0]
 log10accretion_rates_eddington: [-1.0, 0.0]
