@@ -41,36 +41,3 @@ python src/syncretize/incident/sps/bc03/generate_incident_grid.py \
 ```
 
 Pass a Cloudy YAML to the Cloudy scripts as `--cloudy-paramfile <path>`.
-
-Five incident grids were only ever used as Cloudy inputs and are not in
-Syndex. Their parameters come from the incident axes of the Cloudy grids made
-from them.
-
-## Known differences from the published grids
-
-These are also `NOTE` lines in the YAML headers and `notes` in the manifest.
-
-- The 10 BC03 2016 Cloudy grids were made from an earlier version of their
-  incident grids, whose first age was 1e5 yr, not the current 1 yr.
-- `qsosed-cloudy-agn-test` was published with the same filename as
-  `qsosed-test-agn-cloudy-c23p01`, but its incident grid has two inclinations,
-  not three. Its incident model is renamed to `qsosed-cloudy-agn-test` so the
-  outputs don't collide.
-- Three grids were published with ionising luminosities only (no spectra or
-  lines).
-
-Syndex doesn't record these, so the files assume them:
-
-- Isotropic QSOSED grids use `cosine_inclinations: 0.5`, as in syncretize's
-  isotropic parameter files.
-- Fixed-efficiency RELAGN grids use `radiative_efficiencies: [0.1]`, as in
-  their names.
-- FSPS uses the libraries it was compiled with: MIST and MILES for the 3.2
-  grids, MIST and C3K (low resolution) for the 4.0 grids.
-
-Some scripts name their output differently from the published file:
-`bc03_chabrier03-0.1,100` (published as
-`bc03-2003-padova00_chabrier03-0.1,100`), FSPS `mist-miles` with masses
-`1.0,120.0` (published as `mistmiles` with `1,120`), and Maraston 2024
-`Tenc00` (one grid published as `Tenc_0.00`). Several Cloudy grids were also
-renamed after they were made.
