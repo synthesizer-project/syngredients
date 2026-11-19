@@ -31,7 +31,7 @@ API = "https://data.synthesizer-project.org/v1"
 OUT = Path(__file__).resolve().parent
 SPS = "src/syncretize/incident/sps"
 AGN = "src/syncretize/incident/blackholes"
-FSPS_CONFIGS = OUT.parent / "syncretize" / SPS / "fsps" / "configs"
+FSPS_CONFIGS = OUT.parent / "syncretize" / "parameter_files/incident/sps/fsps"
 MSUN_KG = 1.98841586e30
 
 # FSPS [isochrones, spectra] libraries, from the published variant name
@@ -328,7 +328,7 @@ def main():
     args = parser.parse_args()
     if args.syncretize:
         global FSPS_CONFIGS
-        FSPS_CONFIGS = args.syncretize / SPS / "fsps" / "configs"
+        FSPS_CONFIGS = args.syncretize / "parameter_files/incident/sps/fsps"
     if args.cache:
         args.cache.mkdir(parents=True, exist_ok=True)
 
