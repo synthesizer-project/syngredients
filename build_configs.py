@@ -154,6 +154,8 @@ def sps_incident(grid, axes):
         if mp["imf_type"] == "bpl":
             constants["imf_slopes"] = mp["imf_slopes"]
         model = {
+            # Which FSPS (and so which python-fsps) the grid was made with
+            "sps_version": mp["sps_version"],
             "imf_type": mp["imf_type"],
             "libraries": FSPS_LIBRARIES[mp["sps_variant"].replace("-", "")],
         }

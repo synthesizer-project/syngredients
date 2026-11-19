@@ -9,8 +9,8 @@
 Model:
   grid_name: fsps-4.0-mistc3k_lr_bpl-0.08,120.0-2.3_axis-imf_slope
   sps_version: '4.0'
-  imf_type: bpl
   libraries: [mist, c3k_lr]
+  imf_type: bpl
 Constants:
   imf_masses: [0.08, 120.0]
   imf_slopes: [2.3]
