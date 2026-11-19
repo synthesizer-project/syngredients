@@ -2,10 +2,14 @@
 # File: fsps-3.2-mistmiles_chabrier03-20,120.hdf5
 #
 # python src/syncretize/incident/sps/fsps/generate_incident_grid.py \
-#     <syngredients>/sps/fsps-3.2/fsps-3p2-mistmiles-chabrier03-20-120/incident.yaml \
+#     --config-file <syngredients>/sps/fsps-3.2/fsps-3p2-mistmiles-chabrier03-20-120/incident.yaml \
 #     --grid-dir <grid-dir>
 
-grid_name: fsps-3.2-mistmiles_chabrier03-20,120
-libraries: [mist, miles]
-imf_type: chabrier03
-imf_masses: [20, 120]
+Model:
+  grid_name: fsps-3.2-mistmiles_chabrier03-20,120
+  imf_type: chabrier03
+  libraries: [mist, miles]
+Constants:
+  imf_masses: [20, 120]
+Axes:
+Sampling:

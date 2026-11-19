@@ -2,12 +2,23 @@
 # File: relagn_incident_fixed_rad_efficiency_0p1_reduced.hdf5
 #
 # python src/syncretize/incident/blackholes/relagn/generate_incident_grid.py \
-#     <syngredients>/agn/relagn/relagn-fixed-rad-efficiency-0p1-reduced/incident.yaml \
+#     --config-file <syngredients>/agn/relagn/relagn-fixed-rad-efficiency-0p1-reduced/incident.yaml \
 #     --grid-dir <grid-dir>
 
-grid_name: relagn_incident_fixed_rad_efficiency_0p1_reduced
-model: relagn_incident_fixed_rad_efficiency_0p1_reduced
-log10masses: [6.0, 7.0, 8.0, 9.0]
-log10accretion_rates_eddington: [-4.0, -3.0, -2.0, -1.0, 0.0, 1.0]
-cosine_inclinations: [0.2, 0.6, 1]
-radiative_efficiencies: [0.1]
+Model:
+  grid_name: relagn_incident_fixed_rad_efficiency_0p1_reduced
+Constants:
+Axes:
+- name: log10masses
+  type: values
+  values: [6.0, 7.0, 8.0, 9.0]
+- name: log10accretion_rates_eddington
+  type: values
+  values: [-4.0, -3.0, -2.0, -1.0, 0.0, 1.0]
+- name: cosine_inclinations
+  type: values
+  values: [0.2, 0.6, 1]
+- name: radiative_efficiencies
+  type: values
+  values: [0.1]
+Sampling:

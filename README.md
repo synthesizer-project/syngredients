@@ -36,8 +36,10 @@ gives its run command, with script paths relative to syncretize. For example:
 
 ```
 python src/syncretize/incident/sps/bc03/generate_incident_grid.py \
-    <syngredients>/sps/bc03/bc03-2003-padova2000-chabrier03-0p1-100/incident.yaml \
+    --config-file <syngredients>/sps/bc03/bc03-2003-padova2000-chabrier03-0p1-100/incident.yaml \
     --grid-dir <grid-dir> --input-dir <input-dir>
 ```
 
-Pass a Cloudy YAML to the Cloudy scripts as `--cloudy-paramfile <path>`.
+Incident YAMLs use syncretize's Model/Constants/Axes/Sampling format, with
+`Model.grid_name` set to the published filename. Pass a Cloudy YAML to the
+Cloudy scripts as `--cloudy-paramfile <path>`.

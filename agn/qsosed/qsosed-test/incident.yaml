@@ -2,12 +2,21 @@
 # File: qsosed-test.hdf5
 #
 # python src/syncretize/incident/blackholes/qsosed/generate_incident_grid.py \
-#     <syngredients>/agn/qsosed/qsosed-test/incident.yaml \
+#     --config-file <syngredients>/agn/qsosed/qsosed-test/incident.yaml \
 #     --grid-dir <grid-dir>
 # NOTE: Incident grid not in Syndex; rebuilt from the axes of qsosed-test-agn-cloudy-c23p01.
 
-grid_name: qsosed-test
-model: qsosed-test
-log10masses: [8.0, 9.0]
-log10accretion_rates_eddington: [-1.0, 0.0]
-cosine_inclinations: [0.09, 0.5, 0.98]
+Model:
+  grid_name: qsosed-test
+Constants:
+Axes:
+- name: log10masses
+  type: values
+  values: [8.0, 9.0]
+- name: log10accretion_rates_eddington
+  type: values
+  values: [-1.0, 0.0]
+- name: cosine_inclinations
+  type: values
+  values: [0.09, 0.5, 0.98]
+Sampling:

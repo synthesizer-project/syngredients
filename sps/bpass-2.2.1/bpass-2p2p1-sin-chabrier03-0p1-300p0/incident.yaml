@@ -2,9 +2,13 @@
 # File: bpass-2.2.1-sin_chabrier03-0.1,300.0.hdf5
 #
 # python src/syncretize/incident/sps/bpass/generate_incident_grid_2_2_1.py \
-#     <syngredients>/sps/bpass-2.2.1/bpass-2p2p1-sin-chabrier03-0p1-300p0/incident.yaml \
+#     --config-file <syngredients>/sps/bpass-2.2.1/bpass-2p2p1-sin-chabrier03-0p1-300p0/incident.yaml \
 #     --grid-dir <grid-dir> --input-dir <input-dir>
 
-grid_name: bpass-2.2.1-sin_chabrier03-0.1,300.0
-model: bpass_v2.2.1_imf_chab300
-variant: sin
+Model:
+  grid_name: bpass-2.2.1-sin_chabrier03-0.1,300.0
+  bpass_model: bpass_v2.2.1_imf_chab300
+  variant: sin
+Constants:
+Axes:
+Sampling:

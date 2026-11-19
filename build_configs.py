@@ -95,9 +95,22 @@ def log10(values):
 
 
 def slug(text):
-    return re.sub(r"[^a-z0-9]+", "-", text.lower().replace(".", "p")).strip(
-        "-"
-    )
+    return re.sub(r"[^a-z0-9]+", "-", text.lower().replace(".", "p")).strip("-")
+
+
+def sections(model=None, constants=None, axes=None):
+    """Return a parameter file's Model/Constants/Axes/Sampling sections."""
+    return {
+        "Model": model or {},
+        "Constants": constants or None,
+        "Axes": axes or None,
+        "Sampling": None,
+    }
+
+
+def values_axis(name, values):
+    """Return an Axes entry with explicit values."""
+    return {"name": name, "type": "values", "values": values}
 
 
 def sps_incident(grid, axes):
@@ -106,50 +119,54 @@ def sps_incident(grid, axes):
     name = mp["sps_name"]
 
     if name == "bc03":
-        return (
-            "bc03",
-            f"{SPS}/bc03/generate_incident_grid.py",
-            {"isochrones": "Padova2000", "imf_type": mp["imf_type"]},
-        )
+        # The only variant: Padova 2000 isochrones, Chabrier (2003) IMF
+        return "bc03", f"{SPS}/bc03/generate_incident_grid.py", sections()
     if name == "bc03-2016":
         return (
             "bc03-2016",
             f"{SPS}/bc03/generate_incident_grid_2016.py",
-            {"variant": mp["sps_variant"], "imf_type": mp["imf_type"]},
+            sections({"variant": mp["sps_variant"], "imf_type": mp["imf_type"]}),
         )
     if name == "bpass" and mp["sps_version"] == "2.2.1":
         return (
             "bpass-2.2.1",
             f"{SPS}/bpass/generate_incident_grid_2_2_1.py",
-            {"model": mp["original_model_name"], "variant": mp["sps_variant"]},
+            sections(
+                {
+                    "bpass_model": mp["original_model_name"],
+                    "variant": mp["sps_variant"],
+                }
+            ),
         )
     if name == "bpass":
-        alpha = "axis" if "alpha_enhancement" in axes else mp["alpha"]
-        return (
-            "bpass-2.3",
-            f"{SPS}/bpass/generate_incident_grid_2_3.py",
-            {
-                "model": mp["original_model_name"],
-                "variant": mp["sps_variant"],
-                "alpha_enhancement": alpha,
-            },
-        )
+        # A fixed alpha enhancement, or alpha enhancement as an axis
+        if "alpha_enhancement" in axes:
+            params = sections(
+                axes=[values_axis("alpha_enhancement", axes["alpha_enhancement"])]
+            )
+        else:
+            params = sections(constants={"alpha_enhancement": mp["alpha"]})
+        return "bpass-2.3", f"{SPS}/bpass/generate_incident_grid_2_3.py", params
     if name == "fsps" and "variable_imf_parameter" in mp:
         return fsps_variable_imf(mp, axes)
     if name == "fsps":
-        params = {
-            "libraries": FSPS_LIBRARIES[mp["sps_variant"].replace("-", "")],
-            "imf_type": mp["imf_type"],
-            "imf_masses": mp["imf_masses"],
-        }
+        constants = {"imf_masses": mp["imf_masses"]}
         if mp["imf_type"] == "bpl":
-            params["imf_slopes"] = mp["imf_slopes"]
-        return "fsps-3.2", f"{SPS}/fsps/generate_incident_grid.py", params
+            constants["imf_slopes"] = mp["imf_slopes"]
+        model = {
+            "imf_type": mp["imf_type"],
+            "libraries": FSPS_LIBRARIES[mp["sps_variant"].replace("-", "")],
+        }
+        return (
+            "fsps-3.2",
+            f"{SPS}/fsps/generate_incident_grid.py",
+            sections(model, constants),
+        )
     if name == "maraston13":
         return (
             "maraston13",
             f"{SPS}/maraston/generate_incident_grid_2013.py",
-            {"imf_type": mp["imf_type"]},
+            sections({"imf_type": mp["imf_type"]}),
         )
     if name == "maraston24":
         # Variants are written several ways: "0.40", "Tenc40", "Tenc_0.40"
@@ -158,11 +175,13 @@ def sps_incident(grid, axes):
         return (
             "maraston24",
             f"{SPS}/maraston/generate_incident_grid_2024.py",
-            {
-                "imf_type": mp["imf_type"],
-                "rotation": int(digits) / 100,
-                "model_type": "Tenc" if variant.startswith("Tenc") else "Te",
-            },
+            sections(
+                {
+                    "imf_type": mp["imf_type"],
+                    "rotation": int(digits) / 100,
+                    "model_type": "Tenc" if variant.startswith("Tenc") else "Te",
+                }
+            ),
         )
     if name == "yggdrasil":
         populations = {
@@ -174,13 +193,15 @@ def sps_incident(grid, axes):
         return (
             "yggdrasil",
             f"{SPS}/yggdrasil/generate_incident_grid.py",
-            {
-                "population": populations[tuple(mp["imf_masses"])],
-                # The script's choices are written 0, 0.5 and 1
-                "covering_fraction": {"0.5": 0.5, "1": 1}[fcov.group(1)]
-                if fcov
-                else 0,
-            },
+            sections(
+                {
+                    "population": populations[tuple(mp["imf_masses"])],
+                    # The script's choices are written 0, 0.5 and 1
+                    "covering_fraction": {"0.5": 0.5, "1": 1}[fcov.group(1)]
+                    if fcov
+                    else 0,
+                }
+            ),
         )
     raise ValueError(f"No incident mapping for SPS model {name}")
 
@@ -192,14 +213,13 @@ def fsps_variable_imf(mp, axes):
         "slope": "variable_single_slope.yaml",
     }[mp["variable_imf_parameter"]]
     config = yaml.safe_load((FSPS_CONFIGS / config_name).read_text())
-    config["model"]["sps_version"] = mp["sps_version"]
-    config["model"]["libraries"] = FSPS_LIBRARIES[
-        mp["sps_variant"].replace("-", "")
-    ]
-    for entry in config["imf"]["slopes"] + config["imf"]["mass_boundaries"]:
-        if entry.get("vary_axis"):
-            entry["axis"].pop("range", None)
-            entry["axis"]["values"] = axes[entry["axis"]["name"]]
+    config["Model"]["sps_version"] = mp["sps_version"]
+    config["Model"]["libraries"] = FSPS_LIBRARIES[mp["sps_variant"].replace("-", "")]
+    for entry in config["Axes"]:
+        for key in ("min", "max", "n"):
+            entry.pop(key, None)
+        entry["type"] = "values"
+        entry["values"] = axes[entry["name"]]
     return (
         "fsps-4.0",
         f"{SPS}/fsps/generate_incident_grid_variable_imf.py",
@@ -207,7 +227,7 @@ def fsps_variable_imf(mp, axes):
     )
 
 
-def agn_incident(grid, axes, stem):
+def agn_incident(grid, axes):
     """Return (family, script, params) for an AGN incident grid."""
     mp = grid["model_parameters"]
     family = mp["family"]
@@ -215,24 +235,34 @@ def agn_incident(grid, axes, stem):
     masses = axes["masses"]
     if axes["masses_units"] == "kg":
         masses = [m / MSUN_KG for m in masses]
-    params = {
-        # The script writes <model>.hdf5; some files were renamed after
-        # generation, so use the filename rather than the stored name
-        "model": stem,
-        "log10masses": log10(masses),
-        "log10accretion_rates_eddington": log10(
-            axes["accretion_rates_eddington"]
+    axes_list = [
+        values_axis("log10masses", log10(masses)),
+        values_axis(
+            "log10accretion_rates_eddington",
+            log10(axes["accretion_rates_eddington"]),
         ),
+    ]
+    constants = {}
+    if "cosine_inclinations" in axes:
+        axes_list.append(
+            values_axis("cosine_inclinations", axes["cosine_inclinations"])
+        )
+    else:
         # Syndex does not record the fixed inclination of isotropic grids;
         # the repository's isotropic parameter files all use 0.5
-        "cosine_inclinations": axes.get("cosine_inclinations", 0.5),
-    }
+        constants["cosine_inclinations"] = 0.5
     if "spins" in axes:
-        params["spins"] = axes["spins"]
+        axes_list.append(values_axis("spins", axes["spins"]))
     elif family == "relagn":
         # Every fixed-efficiency RELAGN grid uses 0.1 (in its name)
-        params["radiative_efficiencies"] = [0.1]
-    return family, f"{AGN}/{family}/generate_incident_grid.py", params
+        axes_list.append(values_axis("radiative_efficiencies", [0.1]))
+    # The grid name is the filename (set in add_incident), not the stored
+    # name, as some files were renamed after generation
+    return (
+        family,
+        f"{AGN}/{family}/generate_incident_grid.py",
+        sections(constants=constants, axes=axes_list),
+    )
 
 
 def cloudy_params(grid, cloudy_axes):
@@ -268,11 +298,21 @@ Dumper.add_representer(
 )
 
 
-def dump(path, header, params):
+class IncidentDumper(Dumper):
+    """Also write an empty section as a blank key (e.g. ``Constants:``)."""
+
+
+IncidentDumper.add_representer(
+    type(None),
+    lambda dumper, _: dumper.represent_scalar("tag:yaml.org,2002:null", ""),
+)
+
+
+def dump(path, header, params, dumper=Dumper):
     path.parent.mkdir(parents=True, exist_ok=True)
     body = yaml.dump(
         clean(params),
-        Dumper=Dumper,
+        Dumper=dumper,
         sort_keys=False,
         default_flow_style=False,
         width=79,
@@ -319,7 +359,7 @@ def main():
             family, script, params = sps_incident(grid, axes)
             family = f"sps/{family}"
         else:
-            family, script, params = agn_incident(grid, axes, stem)
+            family, script, params = agn_incident(grid, axes)
             family = f"agn/{family}"
         no_input_dir = family.startswith("agn") or "/fsps/" in script
         directory = f"{family}/{syndex_name or slug(stem)}"
@@ -328,26 +368,28 @@ def main():
             # Same name, different axes: rename so outputs do not collide
             directory = f"{family}/{user}-incident"
             notes = notes + [
-                f"Published under the name {params['model']}, like "
+                f"Published under the name {stem}, like "
                 f"{slug(stem)} which has different axes, so renamed to {user}."
             ]
-            params["model"] = grid_name = user
+            grid_name = user
         if directory not in incidents:
             header = [
                 f"Syndex: {syndex_name or 'unpublished (Cloudy input only)'}",
                 f"File: {filename}",
                 "",
                 f"python {script} \\",
-                f"    <syngredients>/{directory}/incident.yaml \\",
+                f"    --config-file <syngredients>/{directory}/incident.yaml \\",
                 "    --grid-dir <grid-dir>"
                 + ("" if no_input_dir else " --input-dir <input-dir>"),
                 *[f"NOTE: {n}" for n in notes],
             ]
             # grid_name makes the script write the published filename
+            model = {"grid_name": grid_name, **params["Model"]}
             dump(
                 OUT / directory / "incident.yaml",
                 header,
-                {"grid_name": grid_name, **params},
+                {**params, "Model": model},
+                dumper=IncidentDumper,
             )
             incidents[directory] = {
                 "syndex_name": syndex_name,
@@ -380,19 +422,14 @@ def main():
         incident_axes = dict(axes)
         cloudy_axes = {}
         for a in grid["axes"]:
-            agn_metal = (
-                grid["grid_type"] == "agn" and a["name"] == "metallicities"
-            )
-            if a["name"] in CLOUDY_AXES and (
-                a["name"] != "metallicities" or agn_metal
-            ):
+            agn_metal = grid["grid_type"] == "agn" and a["name"] == "metallicities"
+            if a["name"] in CLOUDY_AXES and (a["name"] != "metallicities" or agn_metal):
                 cloudy_axes[a["name"]] = incident_axes.pop(a["name"])
 
         notes = []
         if not grid["has_spectra"] and not grid["has_lines"]:
             notes.append(
-                "Published with ionising luminosities only (no spectra or "
-                "lines)."
+                "Published with ionising luminosities only (no spectra or lines)."
             )
 
         parent = by_release.get(grid["incident_release_id"])
@@ -418,8 +455,7 @@ def main():
         else:
             stem = filename.split("_cloudy-")[0]
             inc_notes = [
-                "Incident grid not in Syndex; rebuilt from the axes of "
-                f"{d['name']}."
+                f"Incident grid not in Syndex; rebuilt from the axes of {d['name']}."
             ]
             directory = add_incident(
                 grid, incident_axes, None, f"{stem}.hdf5", inc_notes, d["name"]
