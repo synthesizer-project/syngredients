@@ -39,12 +39,13 @@ makes each grid as Slurm jobs and handles Cloudy failures:
 python make_runs.py --base <base.yaml> --out <dir> --max-active 10
 ```
 
-Each incident grid gets its own run, and each Cloudy grid a run on the
-incident grid that made (under `<dir>/runs/`, the grids in `<dir>/grids/`).
-Every call prints how many runs are where and submits runs, incident runs
-first, until `--max-active` are under way; call it again as runs finish to
-submit the next wave. The base config holds the settings every run shares
-(see `base_template.yaml`). The AGN grids aren't run this way yet.
+Each incident grid gets one run (under `<dir>/runs/`), which makes it and
+then every Cloudy grid made from it, one Cloudy section of the run each (the
+grids go in `<dir>/grids/`). Every call prints the runs under way and how
+many runs are where, and submits runs until `--max-active` are under way;
+call it again as runs finish to submit the next wave. The base config holds
+the settings every run shares (see `base_template.yaml`). The AGN grids
+aren't run this way yet.
 
 ## Running by hand
 
