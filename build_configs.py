@@ -41,6 +41,10 @@ FSPS_LIBRARIES = {
     "mistc3k_lr": ["mist", "c3k_lr"],
 }
 
+# Incident points ionising less than this (log10 Q(HI) per solar mass, in
+# s^-1) aren't run through Cloudy; the stellar Cloudy configs get it
+IONISING_LUMINOSITY_THRESHOLD = 37
+
 # Cloudy axes, and the parameter file key that makes each one
 CLOUDY_AXES = {
     "ionisation_parameters": "ionisation_parameter",
@@ -283,6 +287,8 @@ def cloudy_params(grid, cloudy_axes):
     params["cloudy_version"] = grid["photoionisation_code_version"]
     for axis, values in cloudy_axes.items():
         params[CLOUDY_AXES[axis]] = values
+    if grid["grid_type"] != "agn":
+        params["ionising_luminosity_threshold"] = IONISING_LUMINOSITY_THRESHOLD
     return params
 
 

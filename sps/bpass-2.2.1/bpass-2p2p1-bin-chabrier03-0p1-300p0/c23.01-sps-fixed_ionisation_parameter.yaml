@@ -37,3 +37,4 @@ stop_efrac: -2
 turbulence: 100
 z: 0
 ionisation_parameter: [0.0001, 0.001, 0.01, 0.1]
+ionising_luminosity_threshold: 37

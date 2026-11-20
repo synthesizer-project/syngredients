@@ -37,3 +37,4 @@ stop_T: 500
 stop_efrac: -2
 turbulence: 100
 z: 0
+ionising_luminosity_threshold: 37

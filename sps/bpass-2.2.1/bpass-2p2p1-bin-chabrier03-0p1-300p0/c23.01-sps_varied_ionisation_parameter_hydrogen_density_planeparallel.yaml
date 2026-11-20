@@ -34,3 +34,4 @@ turbulence: 100
 z: 0
 hydrogen_density: [0.01, 0.1, 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000]
 ionisation_parameter: [0.0001, 0.001, 0.01, 0.1]
+ionising_luminosity_threshold: 37

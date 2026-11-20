@@ -27,6 +27,8 @@ Incident directories are named after the grid's Syndex name. Cloudy files are
 named after the part of the Syndex filename following `_cloudy-`, because the
 Cloudy scripts name their output `<incident>_cloudy-<parameter file name>`.
 Each holds the full parameter set, so no `--cloudy-paramfile-extra` is needed.
+The stellar (non-AGN) Cloudy files also set `ionising_luminosity_threshold:
+37`, so incident points ionising too little to need Cloudy aren't run.
 
 ## Running
 
