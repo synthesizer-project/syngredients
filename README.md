@@ -30,7 +30,23 @@ Each holds the full parameter set, so no `--cloudy-paramfile-extra` is needed.
 The stellar (non-AGN) Cloudy files also set `ionising_luminosity_threshold:
 37`, so incident points ionising too little to need Cloudy aren't run.
 
-## Running
+## Running with syncretize's Runner
+
+`make_runs.py` regenerates the stellar grids with syncretize's Runner, which
+makes each grid as Slurm jobs and handles Cloudy failures:
+
+```
+python make_runs.py --base <base.yaml> --out <dir> --max-active 10
+```
+
+Each incident grid gets its own run, and each Cloudy grid a run on the
+incident grid that made (under `<dir>/runs/`, the grids in `<dir>/grids/`).
+Every call prints how many runs are where and submits runs, incident runs
+first, until `--max-active` are under way; call it again as runs finish to
+submit the next wave. The base config holds the settings every run shares
+(see `base_template.yaml`). The AGN grids aren't run this way yet.
+
+## Running by hand
 
 Run the manifest's `incident_grids` first, then its `cloudy_grids`; each
 Cloudy entry names the incident config it needs. Each incident YAML header

@@ -1,0 +1,33 @@
+# Template base config for make_runs.py.
+#
+# Every run make_runs.py writes takes its Run settings from here (with its own
+# name, work_dir and grid_dir), and every Cloudy run its Cloudy settings (with
+# its own config and the executable for its Cloudy version). See syncretize's
+# parameter_files/runs/run_template.yaml for every key.
+
+# The Run settings every run shares
+Run:
+  input_dir: /path/to/input_data      # Directory holding the incident models' source data.
+  environment: "source /path/to/software/env.sh"  # Shell lines run at the start of every job.
+  slurm:
+    partition: cosma8-serial
+    account: dp004
+  incident:
+    walltime: "12:00:00"
+  cloudy:
+    workers: 100                      # Most worker jobs per round, per run.
+    cores_per_worker: 4
+    walltime: "12:00:00"
+    max_walltime: "3-00:00:00"
+  assemble:
+    walltime: "12:00:00"
+    memory: 32G
+
+# The Cloudy settings every Cloudy run shares
+Cloudy:
+  perturb: true                       # Interpolate the models that fail every attempt.
+
+# The Cloudy build to use for each Cloudy version a config asks for
+executables:
+  c23.01: /path/to/cloudy/c23.01
+  c25.00: /path/to/cloudy/c25.00
